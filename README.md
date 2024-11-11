@@ -1,2 +1,7 @@
-# Starter code
-The code contains the initial HTML and CSS structure for the token launchpad.
+# Token-Launchpad
+
+1. Create mint account
+
+Yet to implement features
+2. Add metadata 
+3. Mint tokens

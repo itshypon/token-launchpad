@@ -1,8 +1,9 @@
 # Token-Launchpad
 
 1. Create mint account
+2. Mint tokens
 
 # Yet to implement features
 
-2. Add metadata 
-3. Mint tokens
+3. Add metadata 
+

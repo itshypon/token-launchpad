@@ -2,7 +2,8 @@ import { createInitializeMint2Instruction, getMinimumBalanceForRentExemptMint, M
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { Keypair, SystemProgram, Transaction } from "@solana/web3.js";
 
-export function TokenLaunchpad() {
+// eslint-disable-next-line react/prop-types
+export function TokenLaunchpad({ onTokenCreate }) {
     const wallet = useWallet();
     const { connection } = useConnection();
 
@@ -32,7 +33,8 @@ export function TokenLaunchpad() {
 
         transaction.partialSign(keypair);
         await wallet.sendTransaction(transaction, connection);
-        console.log(keypair.publicKey.toBase58())
+        console.log(keypair.publicKey.toBase58());
+        onTokenCreate(keypair.publicKey);
     }
 
     return  <div style={{

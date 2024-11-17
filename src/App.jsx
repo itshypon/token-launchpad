@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import { TokenLaunchpad } from "./components/TokenLaunchpad";
 import {
@@ -10,8 +11,13 @@ import {
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
 import "@solana/wallet-adapter-react-ui/styles.css";
+import { MintToken } from "./components/MintToken";
+
 
 function App() {
+  const [token, setToken] = useState(null);
+  const [mintDone, setMintDone] = useState(false);
+
   return (
     <ConnectionProvider endpoint="https://api.devnet.solana.com">
       <WalletProvider wallets={[]}>
@@ -26,7 +32,14 @@ function App() {
             <WalletMultiButton />
             <WalletDisconnectButton />
           </div>
-          <TokenLaunchpad />
+          <TokenLaunchpad onTokenCreate={(tokenMint) => {
+            setToken(tokenMint);
+          }} />
+          {token && token.toBase58()}
+          {token && <MintToken mintAddress={token} onDone={() => {
+            setMintDone(true)
+          }}/>}
+          {mintDone && "Hello"}
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
